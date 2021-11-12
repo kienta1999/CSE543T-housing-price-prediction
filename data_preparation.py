@@ -15,7 +15,8 @@ for code in zip_code['zip']:
     progress_file.write(f'Crawling data for zip code {code} ...  \n')
     response = requests.get('https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot',
                             params={'postalcode': code},
-                            headers={'apikey': api_key}
+                            headers={'apikey': api_key},
+                            timeout=2.50
                             )
     if response.status_code == 200:
         data = response.json()['property']
