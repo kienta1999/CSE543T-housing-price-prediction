@@ -19,9 +19,8 @@ data_file.write('zipcode,href\n')
 data_file.close()
 
 zip_code = pd.read_excel('data/uszips.xlsx')
-# curr_zip  = 63744
+# curr_zip  = 95376
 # for code in zip_code[zip_code['zip'] > curr_zip]['zip']:
-
 for code in zip_code['zip']:
     code = str(code).zfill(5)
     progress_file = open("progress.txt", "a")
@@ -36,11 +35,15 @@ for code in zip_code['zip']:
     progress_file.write(f'crawling done for zipcode {code}\n')
     progress_file.close()
 
-# import random 
-# def partition (list_in, n):
-#     random.shuffle(list_in)
-#     return [list_in[i::n] for i in range(n)]
+import random 
+def partition (list_in, n):
+    random.shuffle(list_in)
+    return [list_in[i::n] for i in range(n)]
 
-# href = pd.read_csv('data\property_href.csv')
-# set_href = list(set(href[' href']))
-# lists = partition(set_href, 10)
+href = pd.read_csv('data\property_href.csv')
+set_href = list(set(href['href']))
+lists = partition(set_href, 10)
+for i, list in enumerate(lists):
+    df = pd.DataFrame(list, columns =['href'])
+    df['href'] = df['href'].map(lambda x: x.strip())
+    df.to_csv(f'./data/property_href/{i}.csv', index=False)
