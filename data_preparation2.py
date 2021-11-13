@@ -17,9 +17,9 @@ driver.maximize_window()
 
 # write header
 data_file = open("./data/housing_data_raw.csv", "a")
-data_file.write('beds, bath, area, stress_address, city, state_and_zip, year_built, \
-lot_size, county, walk_score, transit_score, bike_score, lot_size, \
-cooling, heating, pooling, parking_size, img_href, price\n')
+data_file.write('beds,bath,area,stress_address,city,state_and_zip,year_built,\
+lot_size,county,walk_score,transit_score,bike_score,lot_size,\
+cooling,heating,pooling,parking_size,img_href,price\n')
 data_file.close()
 
 # all_href = pd.read_csv('./data/property_href.csv')['href']
@@ -94,6 +94,6 @@ for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit
     img_href = " ".join([img.get_attribute('src') for img in photo_elements.find_elements(By.TAG_NAME, "img")])
 
     # lot_size, cooling, heating, pooling, parking_size
-    data_file.write(f'{beds}, {bath}, {area}, {stress_address}, {city_and_state}, {year_built}, {lot_size}, {county}, {walk_score}, {transit_score}, {bike_score}, {lot_size}, {cooling}, {heating}, {pooling}, {parking_size}, {img_href}, {price}\n')
+    data_file.write(f'{beds},{bath},{area},{stress_address},{city_and_state},{year_built},{lot_size},{county},{walk_score},{transit_score},{bike_score},{lot_size},{cooling},{heating},{pooling},{parking_size},{img_href},{price}\n')
     progress_file.write(f'crawling done for property {href}\n')
     data_file.close()
