@@ -1,3 +1,3 @@
-beds, bath, area, stress_address, city, state, year_built, lot_size, county, walk_score, transit_score, bike_score, price
-3, 3, 3214, 401 Harrison St Unit 46B, San Francisco, CA 94105, 2014, —, San Francisco County, 93, 100, 57, $7900000
-3, 1, 1206, 38 Clinton Ave, Fort Plain, NY 13339, 1946, 8065 Sq. Ft., Montgomery County, 37, None, 18, $129900
+beds, bath, area, stress_address, city, state, year_built, lot_size, county, walk_score, transit_score, bike_score, lot_size, cooling, heating, pooling, parking_size, price
+3, 3, 3214, 401 Harrison St Unit 46B, San Francisco, CA 94105, 2014, 1.2861, San Francisco County, 93, 100, 57, 1.2861, Central, Central, Yes, 2, $7900000
+3, 1, 1206, 38 Clinton Ave, Fort Plain, NY 13339, 1946, 1.2861, Montgomery County, 37, None, 18, 1.2861, Central, Central, Yes, 2, $129900

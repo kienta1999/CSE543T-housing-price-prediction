@@ -18,7 +18,8 @@ driver.maximize_window()
 # write header
 data_file = open("./data/housing_data_raw.csv", "a")
 data_file.write('beds, bath, area, stress_address, city, state, year_built, \
-lot_size, county, walk_score, transit_score, bike_score, price\n')
+lot_size, county, walk_score, transit_score, bike_score, lot_size, \
+cooling, heating, pooling, parking_size, price\n')
 data_file.close()
 
 # all_href = pd.read_csv('./data/property_href.csv')['href']
@@ -30,7 +31,7 @@ for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit
     data_file = open("./data/housing_data_raw.csv", "a")
     progress_file = open("progress2.txt", "a")
     driver.get(href)
-    sleep(0.2)
+    sleep(0.1)
     data = driver.find_elements(By.CSS_SELECTOR , ".statsValue")
     [price, beds, bath, area] = [c.text for c in data]
     price = price.replace(',', '')
@@ -50,8 +51,8 @@ for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit
     basic_infor_value = [e.text for e in basic_infor.find_elements(By.CSS_SELECTOR, "div.table-value")]
     year_built = basic_infor_value[basic_infor_label.index('Year Built')] if 'Year Built' in basic_infor_label else None
     county = basic_infor_value[basic_infor_label.index('County')] if 'County' in basic_infor_label else None
-    lot_size = basic_infor_value[basic_infor_label.index('Lot Size')] if 'Lot Size' in basic_infor_label else None
-    lot_size = lot_size.replace(',', '')
+    # lot_size = basic_infor_value[basic_infor_label.index('Lot Size')] if 'Lot Size' in basic_infor_label else None
+    # lot_size = lot_size.replace(',', '')
     scores = driver.find_elements(By.CSS_SELECTOR , ".walk-score")
     if scores:
         scores = scores[0].find_elements(By.CSS_SELECTOR , ".score")
@@ -60,6 +61,35 @@ for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit
         walk_score = score_value[trademark.index('Walk Score')] if 'Walk Score' in trademark else None
         transit_score = score_value[trademark.index('Transit Score')] if 'Transit Score' in trademark else None
         bike_score = score_value[trademark.index('Bike Score')] if 'Bike Score' in trademark else None
-    data_file.write(f'{beds}, {bath}, {area}, {stress_address}, {city_and_state}, {year_built}, {lot_size}, {county}, {walk_score}, {transit_score}, {bike_score}, {price}\n')
+
+    property_details_container = driver.find_elements(By.CSS_SELECTOR, "div.super-group-content > div.amenity-group")
+    for pc in property_details_container:
+        header = pc.find_elements(By.TAG_NAME, "h3")[0].text
+        if header == 'Pool Information':
+            pool_text = [e.text for e in pc.find_elements(By.TAG_NAME, "li")]
+        if header == 'Heating & Cooling':
+            heating_cooling_text = [e.text for e in pc.find_elements(By.TAG_NAME, "li")]
+        if header == 'Parking & Garage Information':
+            parking_garage_text = [e.text for e in pc.find_elements(By.TAG_NAME, "li")]
+        if header == 'Lot Information':
+            lot_text = [e.text for e in pc.find_elements(By.TAG_NAME, "li")]
+
+    for lt in lot_text:
+        if lt.startswith('Lot Size Acres: '):
+            lot_size = lt.split('Lot Size Acres: ')[1]
+    for hc in heating_cooling_text:
+        if hc.startswith('Cooling: '):
+            cooling = hc.split('Cooling: ')[1]
+        if hc.startswith('Heating: '):
+            heating = hc.split('Heating: ')[1]
+    for p in pool_text:
+        if p.startswith('Has Private Pool: '):
+            pooling = p.split('Has Private Pool: ')[1]
+    for pg in parking_garage_text:
+        if pg.startswith('Parking Total: '):
+            parking_size = pg.split('Parking Total: ')[1]
+
+    # lot_size, cooling, heating, pooling, parking_size
+    data_file.write(f'{beds}, {bath}, {area}, {stress_address}, {city_and_state}, {year_built}, {lot_size}, {county}, {walk_score}, {transit_score}, {bike_score}, {lot_size}, {cooling}, {heating}, {pooling}, {parking_size}, {price}\n')
     progress_file.write(f'crawling done for property {href}\n')
     data_file.close()
