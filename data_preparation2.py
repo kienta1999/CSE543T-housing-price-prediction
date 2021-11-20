@@ -28,7 +28,7 @@ all_href = pd.read_csv(f"data/property_href/{index}.csv")["href"]
 for i, href in enumerate(all_href):
     # for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit-46B/home/144064341', \
     #             'https://www.redfin.com/NY/Fort-Plain/38-Clinton-Ave-13339/home/92339866']:
-    if i <= 16425:
+    if i <= 32709:
         continue
     data_file = open(f"./data/housing_data_raw/{index}.csv", "a")
     progress_file = open("progress2.txt", "a")
