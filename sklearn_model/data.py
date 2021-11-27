@@ -13,7 +13,7 @@ data = pd.read_csv('../data/final_data.csv')[[
 ]]
 X = data.drop('price', axis = 1)
 y = data['price']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=41)
 
 scaler = preprocessing.StandardScaler().fit(X_train)
 X_train_scaled = scaler.transform(X_train)
