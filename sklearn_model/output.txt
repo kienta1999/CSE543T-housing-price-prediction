@@ -1,0 +1,2 @@
+Best KNeighborsRegressor: n_neighbors=19
+Best RandomForestRegressor: max_features='log2', random_state=11, n_estimators=100

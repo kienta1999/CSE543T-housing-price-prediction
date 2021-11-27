@@ -3,3 +3,6 @@ progress.txt
 progress2.txt
 progress2-2.txt
 # data/property_href/*.csv
+playground.ipynb
+.ipynb_checkpoints
+data/final_data2.csv

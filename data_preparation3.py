@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from us_state_to_abbrev import us_state_to_abbrev
 
-index = 2
+index = 0
 source_raw = f"data/housing_data_raw/{index}.csv"
 housing_price = pd.read_csv(source_raw, encoding="cp1252", error_bad_lines=False)
 # price filter
@@ -213,4 +213,4 @@ housing_price = housing_price[
         "price",
     ]
 ]
-housing_price.to_csv("data/final_data{index}.csv", index=False)
+housing_price.to_csv(f"data/final_data.csv", index=False)

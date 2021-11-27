@@ -15,23 +15,21 @@ op.add_argument("headless")
 driver = webdriver.Chrome(service=ser, options=op)
 driver.maximize_window()
 
-index = 2
+index = 0
 
 # write header
-# data_file = open(f"./data/housing_data_raw/{index}.csv", "a")
-# data_file.write(
-#     "href,stress_address,city,state_and_zip,county,img_href,beds,bath,area,year_built,\
-# lot_size,walk_score,transit_score,bike_score,lot_size,\
-# cooling,heating,has_pool,parking_size,price\n"
-# )
-# data_file.close()
+data_file = open(f"./data/housing_data_raw/{index}.csv", "a")
+data_file.write(
+    "href,stress_address,city,state_and_zip,county,img_href,beds,bath,area,year_built,\
+lot_size,walk_score,transit_score,bike_score,lot_size,\
+cooling,heating,has_pool,parking_size,price\n"
+)
+data_file.close()
 
 all_href = pd.read_csv(f"data/property_href/{index}.csv")["href"]
 for i, href in enumerate(all_href):
-    # for href in ['https://www.redfin.com/CA/San-Francisco/401-Harrison-St-94105/unit-46B/home/144064341', \
-    #             'https://www.redfin.com/NY/Fort-Plain/38-Clinton-Ave-13339/home/92339866']:
-    if i <= 13493:
-        continue
+    # if i <= 13493:
+    #     continue
     data_file = open(f"./data/housing_data_raw/{index}.csv", "a")
     progress_file = open(f"progress2-{index}.txt", "a")
     driver.get(href)
