@@ -1,2 +1,0 @@
-Best KNeighborsRegressor: n_neighbors=12
-Best RandomForestRegressor: rf = RandomForestRegressor(max_features='sqrt', random_state=4)
