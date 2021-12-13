@@ -1,11 +1,5 @@
-from data import X_train_scaled, y_train, X_test_scaled, y_test
 import numpy as np
 import matplotlib.pyplot as plt
-
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import GradientBoostingRegressor
-
 # knn
 print('----------------------------------------------------------------')
 print('KNeighborsRegressor')
@@ -110,8 +104,7 @@ mean_test_score = [0.36603561, 0.40342494, 0.41986874, 0.43063967, 0.43995818,
        0.47019117, 0.4704196 , 0.47068858, 0.47047043, 0.47054821,
        0.47097356, 0.47075823, 0.47104712, 0.47061629, 0.4715672 ,
        0.47249717, 0.47401158]
-# Best {'max_features': 'sqrt', 'n_estimators': 490, 'random_state': 1}
-# Best params {'max_features': 'auto', 'n_estimators': 100, 'random_state': 4}
+# Best params {'max_features': 'auto', 'n_estimators': 100, 'random_state': 1}
 X = [p['n_estimators'] for p in params if p['max_features'] == 'auto']
 y = [score for p, score in zip(params, mean_test_score) if p['max_features'] == 'auto']
 plt.plot(X, y)

@@ -1,5 +1,4 @@
 from data import X_train_scaled, y_train, X_test_scaled, y_test
-import numpy as np
 
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
