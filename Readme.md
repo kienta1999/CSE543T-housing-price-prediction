@@ -1,5 +1,10 @@
 <h1>CSE543T housing price prediction</h1>
 
+<h3>Install required packages</h3>
+<p>
+  Run <i>pip install -r requirements.txt</i> to install all the required package
+</p>
+
 <h3>Data acquisition</h3>
 <ul>
   Data source:
