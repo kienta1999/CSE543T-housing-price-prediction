@@ -1,6 +1,6 @@
 <h1>CSE543T housing price prediction</h1>
 
-<h1> <a href="https://simplemaps.com/data/us-zips](https://docs.google.com/document/d/1ivS_cFVzJYx0SJhXoW5TKXcWKTyqRKazvDWh5FPlEyI/edit">Write up</a> </h1>
+<h1> <a href="https://docs.google.com/document/d/1ivS_cFVzJYx0SJhXoW5TKXcWKTyqRKazvDWh5FPlEyI/edit">Write up</a> </h1>
 
 <h3>Install required packages</h3>
 <p>
